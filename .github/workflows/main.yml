@@ -21,7 +21,11 @@ jobs:
     name: run go
     needs: push_to_registry
     runs-on: ubuntu-18.04
-    container: imberfox/test-actions/base-img
+    container: 
+      image: imberfox/test-actions/base-img
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: run
         run: go run main.go
