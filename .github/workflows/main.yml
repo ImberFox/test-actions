@@ -15,13 +15,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: imberfox/test-actions
+          repository: imberfox/test-actions/base-img
           tag_with_ref: true
   run_go:
     name: run go
     needs: push_to_registry
     runs-on: ubuntu-18.04
-    container: imberfox/test-actions:latest
+    container: imberfox/test-actions/base-img
     steps:
       - name: run
         run: go run main.go
