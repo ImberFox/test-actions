@@ -15,7 +15,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: ImberFox/test-actions
+          repository: imberfox/test-actions
           tag_with_ref: true
 
 # name: Test worflow
