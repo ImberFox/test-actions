@@ -1,0 +1,5 @@
+name: 'Build centos'
+description: 'Build centos:7'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
