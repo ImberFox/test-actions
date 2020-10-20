@@ -17,6 +17,10 @@ jobs:
           registry: docker.pkg.github.com
           repository: imberfox/test-actions
           tag_with_ref: true
+    run_go:
+      needs: push_to_registry
+      container: imberfox/test-actions
+      run: go run main.go
 
 # name: Test worflow
 
