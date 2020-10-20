@@ -20,7 +20,8 @@ jobs:
   run_go:
     name: run go
     needs: push_to_registry
-    container: imberfox/test-actions
+    runs-on: ubuntu-18.04
+    container: imberfox/test-actions:latest
     steps:
       - name: run
         run: go run main.go
