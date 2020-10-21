@@ -2,6 +2,8 @@ name: Test workflow
 
 on: push
 
+
+# base
 jobs:
   push_to_registry:
     name: Push Docker image to GitHub Packages
@@ -17,6 +19,7 @@ jobs:
           registry: docker.pkg.github.com
           repository: imberfox/test-actions/base-img
           tag_with_ref: true
+  # here is matrix if macOS don't use container
   run_go:
     name: run go
     needs: push_to_registry
@@ -29,37 +32,3 @@ jobs:
     steps:
       - name: run
         run: go run main.go
-
-# name: Test worflow
-
-# on: push
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-18.04
-#     steps:
-#       - name: Login to docker
-#       run: |
-#         docker login -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
-#         docker build -t centos-base -f Dockerfile 
-#         uses: docker/login-action@v1 
-#         with:
-#           registry: docker.pkg.github.com
-#           username: ${{ github.repository_owner }}
-#           password: ${{ secrets.GITHUB_TOKEN }}
-
-#       - name: Build and push
-#         id: docker_build
-#         uses: docker/build-push-action@v2
-#         with:
-#           file: ./Dockerfile
-#           push: true
-#           tags: HustonMmmavr/simple-dock:latest
-#       - name: Image digest
-#         run: echo ${{ steps.docker_build.outputs.digest }}
-#   # run:
-#   #   needs: build
-#   #   runs-on: ubuntu-18.04
-#   #   container: HustonMmmavr/simple-dock:latest
-#   #   steps:
-      
