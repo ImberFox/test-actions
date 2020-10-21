@@ -31,4 +31,6 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: run
-        run: go run main.go
+        run: |
+          ls /usr/local/go
+          /usr/local/go/bin/go run main.go
