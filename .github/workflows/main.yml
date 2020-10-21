@@ -19,7 +19,7 @@ jobs:
           curl -O -L https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
           tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
           yum -y install which
-          echo 'export PATH=$PATH:/usr/local/go/bin' > /etc/profile.d/path.sh
+          export PATH=/usr/local/go/bin:$PATH
       - name: run
         run: |
           yum -y install which
