@@ -33,5 +33,5 @@ jobs:
       - name: run
         run: |
           pwd
-          ls
+          ls -al
           /usr/local/go/bin/go run main.go
