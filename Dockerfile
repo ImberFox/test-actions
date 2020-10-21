@@ -8,4 +8,4 @@ RUN tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
 
 RUN echo 'export PATH=$PATH:/usr/local/go/bin' > ~/.bashrc
 
-ENTRYPOINT ["/bin/bash"]
+# ENTRYPOINT ["/bin/bash"]

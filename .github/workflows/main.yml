@@ -34,5 +34,4 @@ jobs:
         run: |
           pwd
           ls
-          ls /usr/local/go
           /usr/local/go/bin/go run main.go
