@@ -30,6 +30,8 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
       - name: run
         run: |
           pwd
