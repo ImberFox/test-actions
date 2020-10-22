@@ -17,11 +17,14 @@ jobs:
           curl -O -L https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
           tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
           yum -y install which
-          yum remove git
-          yum install http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-1.noarch.rpm
-          yum install git
+          yum -y remove git
+          yum -y install https://repo.ius.io/ius-release-el7.rpm
+          yum -y install git222
+          git --version
       - name: Check out the repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: run
         run: |
           export PATH=/usr/local/go/bin:$PATH
