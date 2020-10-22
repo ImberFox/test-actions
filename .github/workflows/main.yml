@@ -30,4 +30,10 @@ jobs:
           export PATH=/usr/local/go/bin:$PATH
           git describe
           yum -y install which
-          go run main.go
+          go build main.go
+          ./main
+      name: upload go binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ./main
