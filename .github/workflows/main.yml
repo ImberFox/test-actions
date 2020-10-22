@@ -11,16 +11,20 @@ jobs:
     container: 
       image: centos:7
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
       - name: install deps
         run: |
           yum -y install redhat-lsb-core 
           curl -O -L https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
           tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
           yum -y install which
+          yum remove git
+          yum install http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-1.noarch.rpm
+          yum install git
+      - name: Check out the repo
+        uses: actions/checkout@v2
       - name: run
         run: |
           export PATH=/usr/local/go/bin:$PATH
+          git describe
           yum -y install which
           go run main.go
