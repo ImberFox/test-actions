@@ -32,7 +32,7 @@ jobs:
           yum -y install which
           go build main.go
           ./main
-      name: upload go binary
+      - name: upload go binary
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact
