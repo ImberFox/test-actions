@@ -30,9 +30,8 @@ jobs:
       - name: Checkout submodule
         uses: actions/checkout@v2
         with:
-          repository: ImberFox/private
+          submodules: 'recursive'
           ssh-key: ${{ secrets.DEPLOY_READ }}
-          path: private
       - name: run
         run: |
           export PATH=/usr/local/go/bin:$PATH
