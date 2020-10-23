@@ -34,6 +34,8 @@ jobs:
           ssh-key: ${{ secrets.DEPLOY_READ }}
       - name: run
         run: |
+          ls -al
+          ls -al private/
           export PATH=/usr/local/go/bin:$PATH
           git describe
           yum -y install which
