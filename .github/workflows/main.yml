@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          token: ${{ secrets.CI_SECRET }}
+          # token: ${{ secrets.CI_SECRET }}
           submodules: 'recursive'
       - name: run
         run: |
