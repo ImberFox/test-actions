@@ -25,6 +25,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          submodules: 'recursive'
+
       - name: run
         run: |
           export PATH=/usr/local/go/bin:$PATH
@@ -32,6 +34,8 @@ jobs:
           yum -y install which
           go build main.go
           ./main
+          cd private
+          go run main.go
       - name: upload go binary
         uses: actions/upload-artifact@v2
         with:
