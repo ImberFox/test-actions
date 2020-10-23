@@ -24,10 +24,15 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
           # submodules: 'recursive'
+          # ssh-key: ${{ secrets.DEPLOY_READ }}
+      - name: Checkout submodule
+        uses: actions/checkout@v2
+        with:
+          repository: ImberFox/private
           ssh-key: ${{ secrets.DEPLOY_READ }}
+          path: private
       - name: run
         run: |
           export PATH=/usr/local/go/bin:$PATH
