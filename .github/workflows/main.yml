@@ -26,7 +26,7 @@ jobs:
         with:
           fetch-depth: 0
           submodules: 'recursive'
-          token: ${{ secrets.CI_SECRET }}
+          token: ${{ secrets.DEPLOY_READ }}
       - name: run
         run: |
           export PATH=/usr/local/go/bin:$PATH
