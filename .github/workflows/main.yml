@@ -14,11 +14,6 @@ jobs:
       image: centos:7
 
     steps:
-      - name: install deps
-        run: |
-          yum -y install redhat-lsb-core 
-          curl -O -L https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
-          tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Cache
@@ -27,15 +22,31 @@ jobs:
         with:
           path: build-${{ env.VER }}/bb.1/hello.txt
           key: hello
+
+      - name: cache main
+        uses: actions/cache@v2
+        with:
+          path: build-${{ env.VER }}
+          key: main-${{ env.VER }}
+
+        # TODO add file main which appends and caches as build
+        # add build/static which chaces independantly for not rebuilding
+        # but how prevent rebuild in bash
       - name: create hello
         if: steps.hello-cache.outputs.cache-hit != 'true'
         run: |
-          mkdir -p build-${{ env.VER }}/bb.1
-          echo HELLO > build-${{ env.VER }}/bb.1/hello.txt
-          ls -al build-${{ env.VER }}/bb.1
+          mkdir -p build
+          mkdir -p build/ver-${{ env.VER }}
+          mkdir -p build/static
+          if [-f build/static/static.txt]
+          then
+            printf  "static\n%.0s" {1..5} > build/static/static.txt
+          fi
+          echo "HELLO\n" >> build/ver-${{ env.VER }}/hello.txt
+          ls -al build/ver-${{ env.VER }}
       - name: upload hello
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact-hello1
           path: |
-            build-${{ env.VER }}/bb.*/hello.txt
+            build
