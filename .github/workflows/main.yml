@@ -16,12 +16,13 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Cache
+
+      - name: Cache 1
         id: hello-cache
         uses: actions/cache@v2
         with:
-          path: build-${{ env.VER }}/bb.1/hello.txt
-          key: hello
+          path: build/static
+          key: static
 
       - name: cache main
         uses: actions/cache@v2
