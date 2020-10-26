@@ -58,4 +58,4 @@ jobs:
           name: my-artifact-${{ env.VER }}
           path: |
             ./main
-            ./build-${{ env.VER }}/bb.*/main.go
+            build-${{ env.VER }}/bb.*/main.go
