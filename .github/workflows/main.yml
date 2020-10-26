@@ -7,7 +7,7 @@ jobs:
   main_job:
     name: Main
     env:
-      secret: ${{ secrets.SECRET }}
+      secret: pp #${{ secrets.SECRET }}
     runs-on: ubuntu-18.04
     container: 
       image: centos:7
