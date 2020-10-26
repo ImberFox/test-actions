@@ -36,7 +36,6 @@ jobs:
         # add build/static which chaces independantly for not rebuilding
         # but how prevent rebuild in bash
       - name: create hello
-        if: steps.hello-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p build
           mkdir -p build/ver-${{ env.VER }}
