@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"os/exec"
 	"runtime"
+	"os"
 )
 
 func main() {
+	e := os.Getenv("secret")
+	fmt.Println(e)
 	if runtime.GOOS != "darwin" {
 		cmd := exec.Command("/usr/bin/lsb_release", "-a")
 		var res bytes.Buffer
