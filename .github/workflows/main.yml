@@ -27,7 +27,9 @@ jobs:
       - name: cache main
         uses: actions/cache@v2
         with:
-          path: build-${{ env.VER }}
+          path: |
+            build/
+            !build/static
           key: main-${{ env.VER }}
 
         # TODO add file main which appends and caches as build
