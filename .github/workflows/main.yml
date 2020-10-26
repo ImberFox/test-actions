@@ -6,9 +6,12 @@ on: push
 jobs:
   main_job:
     name: Main
+    env:
+      secret: ${{ secrets.SECRET }}
     runs-on: ubuntu-18.04
     container: 
       image: centos:7
+
     steps:
       - name: install deps
         run: |
