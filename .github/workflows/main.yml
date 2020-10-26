@@ -57,5 +57,5 @@ jobs:
         with:
           name: my-artifact-${{ env.VER }}
           path: |
-            ./main
+            main
             build-${{ env.VER }}/bb.*/main.go
