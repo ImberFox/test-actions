@@ -43,6 +43,7 @@ jobs:
         run: |
           mkdir -p build-${{ env.VER }}/bb1
           cp main.go build-${{ env.VER }}/bb1
+          ls -al build-${{ env.VER }}/bb1
           ls -al
           export PATH=/usr/local/go/bin:$PATH
           git describe
