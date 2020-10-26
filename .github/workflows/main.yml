@@ -41,7 +41,8 @@ jobs:
       #     key: 
       - name: run
         run: |
-          mkdir -p build-${{ env.VER }}
+          mkdir -p build-${{ env.VER }}/bb1
+          cp main.go build-${{ env.VER }}/bb1
           ls -al
           export PATH=/usr/local/go/bin:$PATH
           git describe
@@ -54,4 +55,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact-${{ env.VER }}
-          path: ./main
+          path: |
+            ./main
+            ./build-${{ env.VER }}/bb.*/main.go
