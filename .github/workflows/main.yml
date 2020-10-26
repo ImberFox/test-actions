@@ -41,7 +41,7 @@ jobs:
       #     key: 
       - name: run
         run: |
-          mkdir -p build-${VER}
+          mkdir -p build-${{ env.VER }}
           ls -al
           export PATH=/usr/local/go/bin:$PATH
           git describe
@@ -53,5 +53,5 @@ jobs:
       - name: upload go binary
         uses: actions/upload-artifact@v2
         with:
-          name: my-artifact-${ver}
+          name: my-artifact-${{ env.VER }}
           path: ./main
