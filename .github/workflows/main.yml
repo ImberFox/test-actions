@@ -13,6 +13,10 @@ jobs:
       image: centos:7
 
     steps:
+      - name: Test
+        run: |
+          echo ${{ secrets.SECRET }}
+          echo $secret
       - name: install deps
         run: |
           yum -y install redhat-lsb-core 
