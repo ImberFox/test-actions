@@ -28,7 +28,7 @@ jobs:
           path: build-${{ env.VER }}/bb.1/hello.txt
           key: hello
       - name: create hello
-        if: steps.cache.hello-cache.cache-hit != 'true'
+        if: steps.hello-cache.cache-hit != 'true'
         run: |
           mkdir -p build-${{ env.VER }}/bb.1
           echo HELLO > build-${{ env.VER }}/bb.1/hello.txt
