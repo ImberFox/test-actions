@@ -21,14 +21,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ~/build
-            !~/build/static
-          key: main-6
+            ~/build/ver-${{ env.VER }}
+          key: main-5
 
-      - name: Show folders 1
-        run: |
-          ls -al
-          ls -al ~/build
+      # - name: Show folders 1
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
 
       # - name: Cache static
