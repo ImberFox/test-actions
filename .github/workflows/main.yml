@@ -21,9 +21,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
+            ~/build/*
             !~/build/static
-            ~/build
-          key: main-8
+          key: main-9
 
       # - name: Show folders 1
       #   run: |
@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/build/static
-          key: static-8
+          key: static-9
 
       # - name: Show folders 2
       #   run: |
