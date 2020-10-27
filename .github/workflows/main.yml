@@ -39,7 +39,7 @@ jobs:
           mkdir -p build
           mkdir -p build/ver-${{ env.VER }}
           mkdir -p build/static
-          if [ -f build/static/static.txt ];
+          if ! [ -f build/static/static.txt ];
           then
             printf  "static\n%.0s" {1..50} > build/static/static.txt
           fi
