@@ -17,19 +17,19 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
 
-      - name: Cache 1
-        uses: actions/cache@v2
-        with:
-          path: build/static/*
-          key: static1
-
       - name: cache main
         uses: actions/cache@v2
         with:
           path: |
             build/
             !build/static
-          key: main-${{ env.VER }}
+          key: main
+
+      - name: Cache static
+        uses: actions/cache@v2
+        with:
+          path: build/static/*
+          key: static
 
         # TODO add file main which appends and caches as build
         # add build/static which chaces independantly for not rebuilding
