@@ -40,9 +40,7 @@ jobs:
           mkdir -p build/ver-${{ env.VER }}
           mkdir -p build/static
           ls -al build/ver-${{ env.VER }}
-          cat build/ver-${{ env.VER }}/hello.txt
-          ls build/static/
-          cat build/static/static.txt
+          ls -al build/static/
           if ! [ -f build/static/static.txt ];
           then
             printf  "static\n%.0s" {1..50} >> build/static/static.txt
