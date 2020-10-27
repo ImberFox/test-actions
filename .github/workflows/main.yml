@@ -21,30 +21,27 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ./build/
-            !./build/static/
-          key: main-3
+            ./build
+            !./build/static
+          key: main-4
 
-      - name: Show folders 1
-        run: |
-          ls -al
-          ls -al build
+      # - name: Show folders 1
+      #   run: |
+      #     ls -al
+      #     ls -al build
 
 
       - name: Cache static
         uses: actions/cache@v2
         with:
-          path: ./build/static/*
-          key: static-3
+          path: ./build/static
+          key: static-4
 
-      - name: Show folders 2
-        run: |
-          ls -al
-          ls -al build
+      # - name: Show folders 2
+      #   run: |
+      #     ls -al
+      #     ls -al build
 
-        # TODO add file main which appends and caches as build
-        # add build/static which chaces independantly for not rebuilding
-        # but how prevent rebuild in bash
       - name: create hello
         run: |
           mkdir -p build
