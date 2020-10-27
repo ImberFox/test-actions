@@ -28,6 +28,9 @@ jobs:
       - name: Show folders
         run: |
           ls -al
+          ls -al build
+          ls -al build/static
+
 
       - name: Cache static
         uses: actions/cache@v2
