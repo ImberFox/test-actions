@@ -21,20 +21,21 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ~/build/ver-${{ env.VER }}
-          key: main-5
+            !~/build/static
+            ~/build
+          key: main-6
 
-      - name: Show folders 1
-        run: |
-          ls -al
-          ls -al ~/build
+      # - name: Show folders 1
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
 
-      # - name: Cache static
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: ~/build/static
-      #     key: static-5
+      - name: Cache static
+        uses: actions/cache@v2
+        with:
+          path: ~/build/static
+          key: static-6
 
       # - name: Show folders 2
       #   run: |
