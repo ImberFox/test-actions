@@ -21,43 +21,43 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ./build
-            !./build/static
-          key: main-4
+            ~/build
+            !~/build/static
+          key: main-5
 
-      - name: Show folders 1
-        run: |
-          ls -al
-          ls -al build
+      # - name: Show folders 1
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
 
       - name: Cache static
         uses: actions/cache@v2
         with:
-          path: ./build/static
-          key: static-4
+          path: ~/build/static
+          key: static-5
 
-      - name: Show folders 2
-        run: |
-          ls -al
-          ls -al build
+      # - name: Show folders 2
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
       - name: create hello
         run: |
-          mkdir -p build
-          mkdir -p build/ver-${{ env.VER }}
-          mkdir -p build/static
-          ls -al build/ver-${{ env.VER }}
-          ls -al build/static/
-          if ! [ -f build/static/static.txt ];
+          mkdir -p ~/build
+          mkdir -p ~/build/ver-${{ env.VER }}
+          mkdir -p ~/build/static
+          ls -al ~/build/ver-${{ env.VER }}
+          ls -al ~/build/static/
+          if ! [ -f ~/build/static/static.txt ];
           then
-            printf  "static\n%.0s" {1..50} >> build/static/static.txt
+            printf  "static\n%.0s" {1..50} >> ~/build/static/static.txt
           fi
-          echo "HELLO" >> build/ver-${{ env.VER }}/hello.txt
-          ls -al build/ver-${{ env.VER }}
+          echo "HELLO" >> ~/build/ver-${{ env.VER }}/hello.txt
+          ls -al ~/build/ver-${{ env.VER }}
       - name: upload hello
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact-hello1
           path: |
-            build
+            ~/build
