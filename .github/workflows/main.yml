@@ -23,24 +23,24 @@ jobs:
           path: |
             !~/build/static
             ~/build
-          key: main-6
+          key: main-8
 
-      - name: Show folders 1
-        run: |
-          ls -al
-          ls -al ~/build
+      # - name: Show folders 1
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
 
       - name: Cache static
         uses: actions/cache@v2
         with:
           path: ~/build/static
-          key: static-6
+          key: static-8
 
-      - name: Show folders 2
-        run: |
-          ls -al
-          ls -al ~/build
+      # - name: Show folders 2
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
       - name: create hello
         run: |
