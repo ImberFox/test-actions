@@ -25,10 +25,10 @@ jobs:
             !~/build/static/
           key: main-5
 
-      - name: Show folders
-        run: |
-          ls -al
-          ls -al build
+      # - name: Show folders
+      #   run: |
+      #     ls -al
+      #     ls -al build
 
 
       - name: Cache static
