@@ -23,7 +23,7 @@ jobs:
           path: |
             ~/build
             !~/build/static
-          key: main-5
+          key: main-6
 
       # - name: Show folders 1
       #   run: |
