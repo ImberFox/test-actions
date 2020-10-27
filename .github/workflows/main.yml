@@ -20,7 +20,7 @@ jobs:
       - name: Cache 1
         uses: actions/cache@v2
         with:
-          path: build/static
+          path: build/static/*
           key: static1
 
       - name: cache main
@@ -39,11 +39,15 @@ jobs:
           mkdir -p build
           mkdir -p build/ver-${{ env.VER }}
           mkdir -p build/static
+          ls -al build/ver-${{ env.VER }}
+          cat build/ver-${{ env.VER }}/hello.txt
+          ls build/static/
+          cat build/static/static.txt
           if ! [ -f build/static/static.txt ];
           then
-            printf  "static\n%.0s" {1..50} > build/static/static.txt
+            printf  "static\n%.0s" {1..50} >> build/static/static.txt
           fi
-          echo "HELLO\n" >> build/ver-${{ env.VER }}/hello.txt
+          echo "HELLO" >> build/ver-${{ env.VER }}/hello.txt
           ls -al build/ver-${{ env.VER }}
       - name: upload hello
         uses: actions/upload-artifact@v2
