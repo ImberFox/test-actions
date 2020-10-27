@@ -22,7 +22,7 @@ jobs:
         with:
           path: |
             build/
-            !build/static
+            !build/static/
           key: main-2
 
       - name: Cache static
