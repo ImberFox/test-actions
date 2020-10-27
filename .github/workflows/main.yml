@@ -25,22 +25,22 @@ jobs:
             !~/build/static
           key: main-5
 
-      - name: Show folders 1
-        run: |
-          ls -al
-          ls -al ~/build
+      # - name: Show folders 1
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
 
-      - name: Cache static
-        uses: actions/cache@v2
-        with:
-          path: ~/build/static
-          key: static-5
+      # - name: Cache static
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ~/build/static
+      #     key: static-5
 
-      - name: Show folders 2
-        run: |
-          ls -al
-          ls -al ~/build
+      # - name: Show folders 2
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
       - name: create hello
         run: |
