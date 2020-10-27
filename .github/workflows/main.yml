@@ -23,13 +23,13 @@ jobs:
           path: |
             build/
             !build/static
-          key: main
+          key: main-2
 
       - name: Cache static
         uses: actions/cache@v2
         with:
           path: build/static/*
-          key: static
+          key: static-2
 
         # TODO add file main which appends and caches as build
         # add build/static which chaces independantly for not rebuilding
