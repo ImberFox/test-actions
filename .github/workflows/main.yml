@@ -21,22 +21,21 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            build/
-            !./build/static/
-          key: main-4
+            ~build/
+            !~/build/static/
+          key: main-5
 
       - name: Show folders
         run: |
           ls -al
-          ls -al build
-          ls -al build/static
+
 
 
       - name: Cache static
         uses: actions/cache@v2
         with:
           path: build/static/*
-          key: static-4
+          key: static-5
 
         # TODO add file main which appends and caches as build
         # add build/static which chaces independantly for not rebuilding
