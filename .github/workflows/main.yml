@@ -23,7 +23,7 @@ jobs:
           path: |
             ~/build/*
             !~/build/static
-          key: main-9
+          key: main-2-${{ hashFiles(./build) }}
 
       # - name: Show folders 1
       #   run: |
@@ -35,8 +35,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/build/static
-          key: static-9
-
+          key: static-2-${{ hashFiles(./build/static) }}
       # - name: Show folders 2
       #   run: |
       #     ls -al
@@ -47,14 +46,11 @@ jobs:
           mkdir -p ~/build
           mkdir -p ~/build/ver-${{ env.VER }}
           mkdir -p ~/build/static
-          ls -al ~/build/ver-${{ env.VER }}
-          ls -al ~/build/static/
           if ! [ -f ~/build/static/static.txt ];
           then
             printf  "static\n%.0s" {1..50} >> ~/build/static/static.txt
           fi
           echo "HELLO" >> ~/build/ver-${{ env.VER }}/hello.txt
-          ls -al ~/build/ver-${{ env.VER }}
       - name: upload hello
         uses: actions/upload-artifact@v2
         with:
