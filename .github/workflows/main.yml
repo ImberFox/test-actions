@@ -23,7 +23,7 @@ jobs:
           path: |
             ~/build/*
             !~/build/static
-          key: main-2-${{ hashFiles(./build) }}
+          key: main-2-${{ hashFiles(~/build) }}
 
       # - name: Show folders 1
       #   run: |
@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/build/static
-          key: static-2-${{ hashFiles(./build/static) }}
+          key: static-2-${{ hashFiles(~/build/static) }}
       # - name: Show folders 2
       #   run: |
       #     ls -al
