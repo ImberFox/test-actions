@@ -12,10 +12,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macOS, ubuntu-18.04]
-    container:
-      if: matrix.os == ubuntu-18.04
-      image: centos:7
+        os: [macos]
+        include:
+          - container: centos:7
+            os: ubuntu-18.04
 
     steps:
       - name: install deps
