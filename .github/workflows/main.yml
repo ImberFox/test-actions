@@ -25,10 +25,10 @@ jobs:
             !~/build/static
           key: main-9
 
-      - name: Show folders 1
-        run: |
-          ls -al
-          ls -al ~/build
+      # - name: Show folders 1
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
 
       - name: Cache static
@@ -37,10 +37,10 @@ jobs:
           path: ~/build/static
           key: static-9
 
-      - name: Show folders 2
-        run: |
-          ls -al
-          ls -al ~/build
+      # - name: Show folders 2
+      #   run: |
+      #     ls -al
+      #     ls -al ~/build
 
       - name: create hello
         run: |
