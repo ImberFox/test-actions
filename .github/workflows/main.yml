@@ -19,14 +19,14 @@ jobs:
 
     steps:
       - name: install deps
-        if: matrix.os == ubuntu-18.04
+        if: matrix.os == 'ubuntu-18.04'
         run: |
           yum -y install redhat-lsb-core 
           curl -O -L https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
           tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
 
       - name: install deps
-        if: matrix.os == macos
+        if: matrix.os == 'macos'
         run: |
           brew install go
 
