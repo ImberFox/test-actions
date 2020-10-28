@@ -9,53 +9,35 @@ jobs:
     env:
       secret: ${{ secrets.SECRET }}
       VER: 5
-    runs-on: ubuntu-18.04
-    container: 
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS, ubuntu-18.04]
+    container:
+      if: matrix.os == ubuntu-18.04
       image: centos:7
 
     steps:
-      - name: Test
-        run: |
-          echo ${{ secrets.SECRET }}
-          echo $secret
       - name: install deps
+        if: matrix.os == ubuntu-18.04
         run: |
           yum -y install redhat-lsb-core 
           curl -O -L https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
           tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
-          yum -y install which
-          yum -y remove git
-          yum -y install https://repo.ius.io/ius-release-el7.rpm
-          yum -y install git222
-          git --version
+
+      - name: install deps
+        if: matrix.os == macos
+        run: |
+          brew install go
+
       - name: Check out the repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
           token: ${{ secrets.CI_SECRET }}
           submodules: 'recursive'
-      # - name: Cache
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: ./main
-      #     key: 
       - name: run
         run: |
-          mkdir -p build-${{ env.VER }}/bb.1
-          cp main.go build-${{ env.VER }}/bb.1
-          ls -al build-${{ env.VER }}/bb.1
-          ls -al
           export PATH=/usr/local/go/bin:$PATH
-          git describe
-          yum -y install which
           go build main.go
           ./main
-          cd private
-          go run main.go
-      - name: upload go binary
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact-${{ env.VER }}
-          path: |
-            main
-            build-${{ env.VER }}/bb.*/main.go
