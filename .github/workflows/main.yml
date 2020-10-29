@@ -4,56 +4,20 @@ on: push
 
 # base
 jobs:
-  main_job:
+  linux_job:
+    - name: Main
+      env:
+        secret: ${{ secrets.SECRET }}
+        VER: 5
+      runs-on: ubuntu-18.04
+      container:
+        image: centos:7
+      uses: ./github/actions/
+    
+  macos_job:
     name: Main
     env:
       secret: ${{ secrets.SECRET }}
       VER: 5
-    runs-on: ubuntu-18.04
-    container: 
-      image: centos:7
-
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
-
-      - name: cache main
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/build/*
-            !~/build/static
-          key: main-2-${{ hashFiles(~/build) }}
-
-      # - name: Show folders 1
-      #   run: |
-      #     ls -al
-      #     ls -al ~/build
-
-
-      - name: Cache static
-        uses: actions/cache@v2
-        with:
-          path: ~/build/static
-          key: static-2-${{ hashFiles(~/build/static) }}
-      # - name: Show folders 2
-      #   run: |
-      #     ls -al
-      #     ls -al ~/build
-
-      - name: create hello
-        run: |
-          mkdir -p ~/build
-          mkdir -p ~/build/ver-${{ env.VER }}
-          mkdir -p ~/build/static
-          if ! [ -f ~/build/static/static.txt ];
-          then
-            printf  "static\n%.0s" {1..50} >> ~/build/static/static.txt
-          fi
-          echo "HELLO" >> ~/build/ver-${{ env.VER }}/hello.txt
-      - name: upload hello
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact-hello1
-          path: |
-            ~/build
+    runs-on: macos-latest
+    uses: .github/actions/

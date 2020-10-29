@@ -1,5 +1,36 @@
-name: 'Build centos'
-description: 'Build centos:7'
+name: Shared action
+descrition: test
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  - name: Check out the repo
+    uses: actions/checkout@v2
+
+  - name: cache main
+    uses: actions/cache@v2
+    with:
+      path: |
+        ~/build/*
+        !~/build/static
+      key: main-2
+
+  - name: Cache static
+    uses: actions/cache@v2
+    with:
+      path: ~/build/static
+      key: static-2
+
+  - name: create hello
+    run: |
+      mkdir -p ~/build
+      mkdir -p ~/build/ver-${{ env.VER }}
+      mkdir -p ~/build/static
+      if ! [ -f ~/build/static/static.txt ];
+      then
+        printf  "static\n%.0s" {1..50} >> ~/build/static/static.txt
+      fi
+      echo "HELLO" >> ~/build/ver-${{ env.VER }}/hello.txt
+  - name: upload hello
+    uses: actions/upload-artifact@v2
+    with:
+      name: my-artifact-hello1
+      path: |
+        ~/build
