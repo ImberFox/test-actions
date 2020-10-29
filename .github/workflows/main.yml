@@ -5,7 +5,7 @@ on: push
 # base
 jobs:
   linux_job:
-    - name: Main
+    name: Main
       env:
         secret: ${{ secrets.SECRET }}
         VER: 5
