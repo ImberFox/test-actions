@@ -6,13 +6,13 @@ on: push
 jobs:
   linux_job:
     name: Main
-      env:
-        secret: ${{ secrets.SECRET }}
-        VER: 5
-      runs-on: ubuntu-18.04
-      container:
-        image: centos:7
-      uses: ./github/actions/
+    env:
+      secret: ${{ secrets.SECRET }}
+      VER: 5
+    runs-on: ubuntu-18.04
+    container:
+      image: centos:7
+    uses: ./github/actions/
     
   macos_job:
     name: Main
