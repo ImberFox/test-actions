@@ -22,8 +22,9 @@ jobs:
           a a1
       - name:
         run: |
+          ls
           cat a1
-          cat a2
+          cat b1
       
       - name: run on master
         if: github.ref == 'refs/heads/master'
