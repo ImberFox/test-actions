@@ -5,33 +5,26 @@ on: push
 
 # base
 jobs:
-  push_to_registry:
+  test:
     name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: imberfox/test-actions/base-img
-          tag_with_ref: true
-  # here is matrix if macOS don't use container
-  run_go:
-    name: run go
-    needs: push_to_registry
-    runs-on: ubuntu-18.04
-    container: 
-      image:  docker.pkg.github.com/imberfox/test-actions/base-img
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
-      - name: run
+      - name: create files
         run: |
-          go run main.go
+          echo b > b
+          echo a > a
+      - name: test multiline
+        run: >
+          cp
+          b b1
+
+          cp
+          a a1
+      - name:
+        run: |
+          cat a1
+          cat a2
+      
+      - name: run on master
+        if: github.ref == 'refs/heads/master'
+        run: echo we are on master
