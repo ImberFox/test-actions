@@ -7,25 +7,12 @@ on: push
 jobs:
   test:
     name: Push Docker image to GitHub Packages
-    runs-on: ubuntu-latest
+    runs-on: macos-10.15
     steps:
-      - name: create files
-        run: |
-          echo b > b
-          echo a > a
-      - name: test multiline
-        run: >
-          cp
-          b b1
+      - name: check python
+        run: | 
+          python -v
+          python2 -v || echo 'No python2'
 
-          cp
-          a a1
-      - name:
-        run: |
-          ls
-          cat a1
-          cat b1
-      
-      - name: run on master
-        if: github.ref == 'refs/heads/master'
-        run: echo we are on master
+      - name: Init python 2
+        run: brew install python@2
